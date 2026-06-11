@@ -2,9 +2,10 @@ import { useShallow } from 'zustand/react/shallow';
 import { useGameStore } from '../store/gameStore';
 import { WEATHER_NAMES, WEATHER_COLORS } from '../game/constants';
 import { calculateTotalRating, formatMoney } from '../game/EconomySystem';
-import { Zap, Heart, Wrench, DollarSign, Cloud, Clock, Star } from 'lucide-react';
+import { Zap, Heart, Wrench, DollarSign, Cloud, Clock, Star, ChevronRight, List } from 'lucide-react';
 
 export default function StatusPanel() {
+  const dispatch = useGameStore((state) => state.dispatch);
   const player = useGameStore((state) => state.player);
   const vehicle = useGameStore((state) => state.vehicle);
   const weather = useGameStore((state) => state.weather);
@@ -126,10 +127,24 @@ export default function StatusPanel() {
           </span>
         </div>
 
-        <div className="flex items-center justify-between">
-          <span className="font-retro text-sm text-gray-400">完成订单</span>
-          <span className="font-retro text-sm text-game-success">{player.completedOrders}</span>
-        </div>
+        <button
+          onClick={() => dispatch({ type: 'OPEN_INCOME_DETAIL' })}
+          className="w-full flex items-center justify-between p-2 rounded hover:bg-game-neon/10 transition-colors group"
+        >
+          <div className="flex items-center gap-2">
+            <List size={14} className="text-gray-400 group-hover:text-game-neon transition-colors" />
+            <span className="font-retro text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+              完成订单
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="font-retro text-sm text-game-success">{player.completedOrders}</span>
+            <ChevronRight
+              size={14}
+              className="text-gray-500 group-hover:text-game-neon transition-colors"
+            />
+          </div>
+        </button>
       </div>
 
       {(isCharging || isRepairing || isResting) && (

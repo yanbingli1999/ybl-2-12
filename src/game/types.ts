@@ -113,6 +113,7 @@ export interface GameState {
   isGameOver: boolean;
   showSettlement: boolean;
   lastSettlement: IncomeRecord | null;
+  showIncomeDetail: boolean;
   plannedPath: Position[];
   isCharging: boolean;
   isRepairing: boolean;
@@ -146,6 +147,8 @@ export type GameAction =
   | { type: 'TICK'; deltaTime: number }
   | { type: 'TOGGLE_PAUSE' }
   | { type: 'CLOSE_SETTLEMENT' }
+  | { type: 'OPEN_INCOME_DETAIL' }
+  | { type: 'CLOSE_INCOME_DETAIL' }
   | { type: 'PLAN_PATH'; path: Position[] }
   | { type: 'CLEAR_PATH' }
   | { type: 'NEW_GAME' }

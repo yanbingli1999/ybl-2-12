@@ -6,6 +6,7 @@ import StatusPanel from '../components/StatusPanel';
 import OrderPanel from '../components/OrderPanel';
 import ControlBar from '../components/ControlBar';
 import SettlementModal from '../components/SettlementModal';
+import IncomeDetailModal from '../components/IncomeDetailModal';
 import SaveLoadModal from '../components/SaveLoadModal';
 import { hasSavedGame } from '../game/Storage';
 import { Truck, HelpCircle, X } from 'lucide-react';
@@ -63,6 +64,7 @@ export default function Home() {
       </div>
 
       <SettlementModal />
+      <IncomeDetailModal />
       <SaveLoadModal isOpen={showSaveModal} onClose={() => setShowSaveModal(false)} />
 
       {showStartScreen && (

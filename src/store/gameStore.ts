@@ -44,6 +44,7 @@ export function createInitialState(): GameState {
     isGameOver: false,
     showSettlement: false,
     lastSettlement: null,
+    showIncomeDetail: false,
     plannedPath: [],
     isCharging: false,
     isRepairing: false,
@@ -289,6 +290,14 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
     case 'CLOSE_SETTLEMENT': {
       return { ...state, showSettlement: false };
+    }
+
+    case 'OPEN_INCOME_DETAIL': {
+      return { ...state, showIncomeDetail: true };
+    }
+
+    case 'CLOSE_INCOME_DETAIL': {
+      return { ...state, showIncomeDetail: false };
     }
 
     case 'PLAN_PATH': {
